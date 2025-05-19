@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yfk.comfyui.comfyui_dao.gen.dao.FlowPOMapper">
+  <resultMap id="BaseResultMap" type="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="flow_name" jdbcType="VARCHAR" property="flowName" />
+    <result column="flow_desc" jdbcType="VARCHAR" property="flowDesc" />
+    <result column="flow_inputs" jdbcType="VARCHAR" property="flowInputs" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO">
+    <result column="flow_prompt_dev" jdbcType="LONGVARCHAR" property="flowPromptDev" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, flow_name, flow_desc, flow_inputs, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    flow_prompt_dev
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPOExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from flow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO" useGeneratedKeys="true">
+    insert into flow (flow_name, flow_desc, flow_inputs, 
+      create_time, update_time, flow_prompt_dev
+      )
+    values (#{flowName,jdbcType=VARCHAR}, #{flowDesc,jdbcType=VARCHAR}, #{flowInputs,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{flowPromptDev,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO" useGeneratedKeys="true">
+    insert into flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flowName != null">
+        flow_name,
+      </if>
+      <if test="flowDesc != null">
+        flow_desc,
+      </if>
+      <if test="flowInputs != null">
+        flow_inputs,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="flowPromptDev != null">
+        flow_prompt_dev,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flowName != null">
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowDesc != null">
+        #{flowDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="flowInputs != null">
+        #{flowInputs,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowPromptDev != null">
+        #{flowPromptDev,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO">
+    update flow
+    <set>
+      <if test="flowName != null">
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowDesc != null">
+        flow_desc = #{flowDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="flowInputs != null">
+        flow_inputs = #{flowInputs,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowPromptDev != null">
+        flow_prompt_dev = #{flowPromptDev,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO">
+    update flow
+    set flow_name = #{flowName,jdbcType=VARCHAR},
+      flow_desc = #{flowDesc,jdbcType=VARCHAR},
+      flow_inputs = #{flowInputs,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      flow_prompt_dev = #{flowPromptDev,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowPO">
+    update flow
+    set flow_name = #{flowName,jdbcType=VARCHAR},
+      flow_desc = #{flowDesc,jdbcType=VARCHAR},
+      flow_inputs = #{flowInputs,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

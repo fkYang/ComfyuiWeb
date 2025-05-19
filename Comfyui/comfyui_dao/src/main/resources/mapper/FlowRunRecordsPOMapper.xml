@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yfk.comfyui.comfyui_dao.gen.dao.FlowRunRecordsPOMapper">
+  <resultMap id="BaseResultMap" type="com.yfk.comfyui.comfyui_dao.gen.domain.FlowRunRecordsPO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="flow_id" jdbcType="BIGINT" property="flowId" />
+    <result column="inputs" jdbcType="VARCHAR" property="inputs" />
+    <result column="output_image" jdbcType="VARCHAR" property="outputImage" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="prompt_id" jdbcType="VARCHAR" property="promptId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, flow_id, inputs, output_image, create_time, update_time, status, prompt_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from flow_run_records
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from flow_run_records
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowRunRecordsPO" useGeneratedKeys="true">
+    insert into flow_run_records (flow_id, inputs, output_image, 
+      create_time, update_time, status, 
+      prompt_id)
+    values (#{flowId,jdbcType=BIGINT}, #{inputs,jdbcType=VARCHAR}, #{outputImage,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{promptId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowRunRecordsPO" useGeneratedKeys="true">
+    insert into flow_run_records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flowId != null">
+        flow_id,
+      </if>
+      <if test="inputs != null">
+        inputs,
+      </if>
+      <if test="outputImage != null">
+        output_image,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      status,
+      <if test="promptId != null">
+        prompt_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flowId != null">
+        #{flowId,jdbcType=BIGINT},
+      </if>
+      <if test="inputs != null">
+        #{inputs,jdbcType=VARCHAR},
+      </if>
+      <if test="outputImage != null">
+        #{outputImage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      #{status,jdbcType=TINYINT},
+      <if test="promptId != null">
+        #{promptId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowRunRecordsPO">
+    update flow_run_records
+    <set>
+      <if test="flowId != null">
+        flow_id = #{flowId,jdbcType=BIGINT},
+      </if>
+      <if test="inputs != null">
+        inputs = #{inputs,jdbcType=VARCHAR},
+      </if>
+      <if test="outputImage != null">
+        output_image = #{outputImage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="promptId != null">
+        prompt_id = #{promptId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yfk.comfyui.comfyui_dao.gen.domain.FlowRunRecordsPO">
+    update flow_run_records
+    set flow_id = #{flowId,jdbcType=BIGINT},
+      inputs = #{inputs,jdbcType=VARCHAR},
+      output_image = #{outputImage,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      prompt_id = #{promptId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

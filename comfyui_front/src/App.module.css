@@ -1,0 +1,107 @@
+/* 表格容器 */
+.tableContainer {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  /* 表格基础样式 */
+  .flowTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  /* 表头样式 */
+  .flowTable thead {
+    background: #fafafa;
+    border-bottom: 2px solid #e8e8e8;
+  }
+  
+  .flowTable th {
+    padding: 16px;
+    text-align: left;
+    color: rgba(0,0,0,0.85);
+    font-weight: 600;
+  }
+  
+  /* 数据行样式 */
+  .tableRow {
+    transition: background 0.3s;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .tableRow:hover {
+    background: #fafafa;
+  }
+  
+  /* 单元格样式 */
+  .flowTable td {
+    padding: 16px;
+    color: rgba(0,0,0,0.85);
+  }
+  
+  /* 名称列样式 */
+  .nameColumn {
+    width: 30%;
+  }
+  
+  .nameCell {
+    font-weight: 500;
+  }
+  
+  /* 描述列样式 */
+  .descColumn {
+    width: 70%;
+  }
+  
+  .noDesc {
+    color: #bfbfbf;
+    font-style: italic;
+  }
+  
+  /* 空状态提示 */
+  .empty {
+    padding: 24px;
+    text-align: center;
+    color: #8c8c8c;
+    background: #fff;
+  }
+
+
+
+
+/* 操作列 */
+.actionCell {
+    width: 100px;
+    text-align: center;
+  }
+  
+  .runButton {
+    padding: 4px 12px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .runButton:hover {
+    background: #40a9ff;
+  }
+/*   
+  // 新增遮罩样式 */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 999;
+}
+
+
+

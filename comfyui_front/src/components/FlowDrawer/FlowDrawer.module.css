@@ -1,0 +1,416 @@
+/*  */
+  
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -420px; /* 抽屉宽度 */
+  width: 400px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+  transition: right 0.3s ease-out;
+  z-index: 1000;
+}
+
+  .scrollContainer {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 自定义滚动条样式 */
+.content::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 3px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
+
+/* 表格间距调整 */
+.configTable {
+  margin-bottom: 24px; /* 防止底部内容被遮挡 */
+}
+
+  .visible {
+    right: 0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .closeBtn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+  }
+  
+
+/* 表格整体样式 */
+.configTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+/* 表头样式 */
+.configTable th {
+  background: #f8f9fa;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid #e9ecef;
+  color: #495057;
+  font-weight: 600;
+}
+
+/* 列宽定义 */
+.descCol {
+  width: 35%;
+}
+.typeCol {
+  width: 20%;
+}
+.valueCol {
+  width: 45%;
+}
+
+/* 数据行样式 */
+.tableRow {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tableRow:hover {
+  background-color: #f8f9fa;
+}
+
+/* 单元格样式 */
+.configTable td {
+  padding: 12px 16px;
+  vertical-align: top;
+}
+
+/* 类型标签样式 */
+.imageType {
+  color: #40a9ff;
+  background: #e6f7ff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.textType {
+  color: #73d13d;
+  background: #f6ffed;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* 代码块样式 */
+code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  background: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #d63384;
+}
+
+
+/* 拖动手柄样式 */
+.dragHandle {
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  z-index: 1;
+  background: rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+
+.dragHandle:hover,
+.dragHandle:active {
+  background: #1890ff;
+}
+
+/* 拖动时的全局样式 */
+body.dragging {
+  cursor: col-resize;
+  user-select: none;
+}
+
+
+
+
+/* 新增输入相关样式 */
+
+.inputCell {
+  padding: 8px 12px !important;
+}
+
+/* 文本输入框样式 */
+.textInput {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.textInput:focus {
+  border-color: #40a9ff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* 文件上传区域样式 */
+.uploadArea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.uploadButton {
+  position: relative;
+  padding: 6px 16px;
+  background: #1890ff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.uploadButton:hover {
+  background: #40a9ff;
+}
+
+.uploadButton input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.fileName {
+  color: #666;
+  font-size: 0.9em;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+/* FlowDrawer.module.css 新增样式 */
+.statusContainer {
+  margin-top: 8px;
+}
+
+.previewRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.successText {
+  color: #52c41a;
+}
+
+.link {
+  color: #1890ff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.previewImage {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
+}
+
+.uploading {
+  color: #1890ff;
+  font-size: 0.9em;
+}
+
+.error {
+  color: #ff4d4f;
+  font-size: 0.9em;
+}
+
+
+
+
+/* FlowDrawer.module.css */
+.footer {
+  padding: 16px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto;
+}
+
+.runButton {
+  width: 100%;
+  padding: 12px;
+  background: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.runButton:disabled {
+  background: #bae7ff;
+  cursor: not-allowed;
+}
+
+.runButton:not(:disabled):hover {
+  background: #40a9ff;
+  transform: translateY(-1px);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.success {
+  margin-top: 12px;
+  color: #52c41a;
+  text-align: center;
+}
+
+.error {
+  margin-top: 12px;
+  color: #ff4d4f;
+  text-align: center;
+}
+
+
+
+
+/* FlowDrawer.module.css */
+/* 状态提示 */
+.statusContainer {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.processing {
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 结果展示 */
+.resultSection {
+  margin-top: 16px;
+}
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.resultItem {
+  position: relative;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 200px; /* 新增容器最大宽度 */
+  max-height: 3150px; /* 新增容器最大高度 */
+}
+
+.resultItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 保持比例填充容器 */
+  display: block;
+  margin: 0 auto;
+}
+
+.downloadBtn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 4px 12px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.downloadBtn:hover {
+  opacity: 0.8;
+}
+
+
+
+/* 描述区域样式 */
+.description {
+  padding: 16px 24px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  gap: 8px;
+  line-height: 1.6;
+}
+
+.descLabel {
+  color: #666;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.descContent {
+  color: #333;
+  white-space: pre-wrap; /* 保留换行符 */
+  word-break: break-word;
+}
